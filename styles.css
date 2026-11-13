@@ -59,3 +59,24 @@ html{scroll-padding-top:0}.resume-content section[id],.project-row[id]{scroll-ma
 .home-career .home-availability span{flex:none}
 .home-career .home-context{font-size:15px;max-width:38ch}
 @media(max-width:720px){.home-intro{grid-template-columns:1fr;gap:22px}.home-career{border-left:0;border-top:1px solid var(--line);padding:20px 0 0}.home-career .home-availability{margin-bottom:9px}}
+
+/* White and red design preview */
+:root{--bg:#fff;--ink:#222226;--muted:#55555d;--teal:#ad2639;--line:#e5e5e9;--serif:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{font-family:var(--serif);-webkit-font-smoothing:antialiased}
+.continuous-page .header{background:#fffffff2;backdrop-filter:blur(16px)}
+h1,h2,h3{font-weight:650;letter-spacing:-.035em}
+.home-intro h1{font-size:clamp(42px,5.3vw,72px);font-weight:720}
+.home-bio .home-headline{font-size:clamp(24px,2.8vw,39px);font-weight:570;letter-spacing:-.035em;color:var(--ink)}
+.home-career{background:#faf7f7;border:1px solid #f1e8e9;border-radius:22px;padding:clamp(20px,3vw,34px)}
+.home-career .home-availability{font-weight:650;font-size:clamp(23px,2.55vw,35px);letter-spacing:-.03em}
+.venue-badge{background:#f9eaed;color:#962338}
+.project-row,.publication-list article{transition:background-color .22s ease}
+@media(hover:hover){.project-row:hover,.publication-list article:hover{background:#fdfafa}}
+@media(prefers-reduced-motion:no-preference){.home-intro{animation:preview-enter .55s ease-out both}.preview-reveal{animation:preview-enter .42s ease-out both}}
+@keyframes preview-enter{from{opacity:.55;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+
+/* Keep red for emphasis rather than long technology and publication lists. */
+.project-row .tags{color:#68616a}
+.publication-list article h3{font-size:clamp(18px,1.8vw,23px);line-height:1.35}
+.publication-list h3 a{color:var(--ink);text-decoration-color:#d8d4d7}
+.publication-list h3 a:hover{text-decoration-color:var(--teal)}

@@ -54,3 +54,16 @@ addEventListener('scroll', scheduleUpdate, { passive: true });
 addEventListener('resize', scheduleUpdate);
 addEventListener('hashchange', scheduleUpdate);
 updateSections();
+
+// Animate once on entry without hiding content or affecting anchor navigation.
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('preview-reveal');
+      observer.unobserve(entry.target);
+    }
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.page-intro, .project-row, .publication-list article')
+    .forEach(element => observer.observe(element));
+}
