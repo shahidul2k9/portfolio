@@ -20,7 +20,13 @@ function moveIndicator() {
   indicator.style.setProperty('--indicator-width', `${linkRect.width - left - right}px`);
   mainNav.classList.add('indicator-ready');
 }
-const resumeSections = [...document.querySelectorAll('.resume-content section[id]')];
+const sectionMenus = new Map(pageSections.map(section => [
+  section.id,
+  [...section.querySelectorAll('.resume-layout aside nav a')].map(link => ({
+    link,
+    target: document.getElementById(link.hash.slice(1))
+  })).filter(item => item.target)
+]));
 let scheduled = false;
 function updateSections() {
   const marker = (document.querySelector('.header')?.getBoundingClientRect().height || 88) + 24;
@@ -34,16 +40,28 @@ function updateSections() {
       else link.removeAttribute('aria-current');
     });
   }
-  let resumeCurrent = resumeSections[0];
-  for (const section of resumeSections) {
-    if (section.getBoundingClientRect().top <= marker) resumeCurrent = section;
+  for (const [sectionId, items] of sectionMenus) {
+    let selected;
+    if (current?.id === sectionId) {
+      selected = items[0];
+      for (const item of items) {
+        // Anchor navigation lands at the target's scroll margin, which varies by section.
+        const anchorOffset = parseFloat(getComputedStyle(item.target).scrollMarginTop) || 0;
+        if (item.target.getBoundingClientRect().top <= Math.max(marker, anchorOffset + 12)) {
+          selected = item;
+        }
+      }
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        selected = items.at(-1);
+      }
+    }
+    for (const item of items) {
+      const active = item === selected;
+      item.link.classList.toggle('active', active);
+      if (active) item.link.setAttribute('aria-current', 'location');
+      else item.link.removeAttribute('aria-current');
+    }
   }
-  document.querySelectorAll('aside nav a').forEach(link => {
-    const active = current?.id === 'resume' && link.hash === '#' + resumeCurrent?.id;
-    link.classList.toggle('active', active);
-    if (active) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
-  });
   moveIndicator();
   scheduled = false;
 }

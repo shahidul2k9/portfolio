@@ -44,7 +44,7 @@ html{scroll-padding-top:0}.resume-content section[id],.project-row[id]{scroll-ma
 .publication-meta strong{color:var(--teal)}
 
 .home-availability{display:inline-flex;align-items:center;gap:8px;color:var(--teal);font-size:14px;font-weight:700;margin:14px 0 0}
-.home-availability span{width:7px;height:7px;border-radius:50%;background:currentColor}
+
 .publication-list article .publication-meta{align-items:center}
 .venue-badge{display:inline-flex;align-items:center;gap:7px;background:#e3eee8;color:#1e554b;padding:5px 9px;border-radius:5px;font-size:13px;line-height:1.4}
 .venue-badge svg{width:16px;height:16px;flex:none}
@@ -56,7 +56,7 @@ html{scroll-padding-top:0}.resume-content section[id],.project-row[id]{scroll-ma
 .home-bio .home-headline{font-size:clamp(25px,3.3vw,43px)}
 .home-career{border-left:1px solid var(--line);padding-left:clamp(20px,3vw,38px)}
 .home-career .home-availability{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;font-family:var(--serif);font-size:clamp(25px,3vw,39px);font-weight:400;line-height:1.15}
-.home-career .home-availability span{flex:none}
+
 .home-career .home-context{font-size:15px;max-width:38ch}
 @media(max-width:720px){.home-intro{grid-template-columns:1fr;gap:22px}.home-career{border-left:0;border-top:1px solid var(--line);padding:20px 0 0}.home-career .home-availability{margin-bottom:9px}}
 
@@ -66,7 +66,7 @@ body{font-family:var(--serif);-webkit-font-smoothing:antialiased}
 .continuous-page .header{background:#fffffff2;backdrop-filter:blur(16px)}
 h1,h2,h3{font-weight:650;letter-spacing:-.035em}
 .home-intro h1{font-size:clamp(42px,5.3vw,72px);font-weight:720}
-.home-bio .home-headline{font-size:clamp(24px,2.8vw,39px);font-weight:570;letter-spacing:-.035em;color:var(--ink)}
+.home-bio .home-headline{font-weight:570;letter-spacing:-.035em;color:var(--ink)}
 .home-career{background:#faf7f7;border:1px solid #f1e8e9;border-radius:22px;padding:clamp(20px,3vw,34px)}
 .home-career .home-availability{font-weight:650;font-size:clamp(23px,2.55vw,35px);letter-spacing:-.03em}
 .venue-badge{background:#f9eaed;color:#962338}
@@ -81,3 +81,59 @@ h1,h2,h3{font-weight:650;letter-spacing:-.035em}
 .publication-list h3 a{color:var(--ink);text-decoration-color:#d8d4d7}
 .publication-list h3 a:hover{text-decoration-color:var(--teal)}
 @media(max-width:360px){.continuous-page .header nav a{padding-inline:6px}}
+
+/* Emphasize the current section without changing the menu layout. */
+.continuous-page .header nav a{font-weight:600}
+.nav-label{display:inline-flex;align-items:center;gap:.4em;transition:transform .18s ease}
+.nav-label svg{width:1em;height:1em;flex:none}
+.continuous-page .header nav a[aria-current="location"] .nav-label{transform:scale(var(--active-nav-scale,1.28))}
+.nav-indicator,.continuous-page .header nav:not(.indicator-ready) a[aria-current="location"]::after{height:3px}
+@media(max-width:600px){.continuous-page .header nav a{padding-inline:6px}.nav-label{gap:.28em}}
+@media(max-width:360px){.continuous-page .header nav a{padding-inline:3px}.continuous-page .header nav{font-size:12px}}
+
+@media(max-width:600px){.continuous-page .header nav{--active-nav-scale:1.16}}
+@media(max-width:360px){.continuous-page .header nav{--active-nav-scale:1.12}}
+
+.continuous-page .resume-top{justify-content:flex-end}
+
+/* Shared type scale for section introductions. */
+.home-bio .home-headline,
+.continuous-page :is(.resume-intro, .page-intro) > :is(h1, h2){
+  font-size:clamp(24px,2.8vw,39px);
+  line-height:1.2;
+  margin-bottom:14px;
+}
+.continuous-page :is(.resume-intro, .page-intro) > p:not(.note):not(.meta):not(.eyebrow){
+  font-size:clamp(15px,1.45vw,17px);
+  line-height:1.65;
+  max-width:72ch;
+}
+
+.continuous-page .resume-top{align-items:center;justify-content:space-between;gap:24px}
+.resume-top .resume-intro{padding:0}
+.resume-top .button{flex:none;margin:0}
+@media(max-width:600px){.continuous-page .resume-top{align-items:flex-start;flex-direction:column;gap:16px}}
+
+/* Shared sidebar and content columns for the three detail sections. */
+.continuous-page .resume-layout{padding-top:clamp(32px,5vw,62px)}
+.continuous-page .resume-layout .resume-top,.continuous-page .section-layout .page-intro{padding-top:0}
+.section-body{min-width:0}
+.section-layout .project-row{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(20px,3vw,36px)}
+.research-topic{padding:24px 0;border-top:1px solid var(--line);scroll-margin-top:105px}
+.research-topic h3{font-size:23px;margin-bottom:8px}
+.research-topic p{margin:0;color:var(--muted);max-width:72ch}
+.section-body #publications{padding-top:25px;scroll-margin-top:104px}
+@media(max-width:850px){.section-layout .project-row{grid-template-columns:1fr}}
+@media(max-width:600px){.section-layout aside nav{flex-wrap:wrap;justify-content:flex-start;gap:2px 14px}.research-topic,.section-body #publications{scroll-margin-top:96px}}
+.footer-email{color:var(--muted);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+
+.resume-layout aside a[aria-current="location"]{font-weight:650;background:#f9eaed}
+.resume-top a.button,.resume-top a.button:hover,.resume-top a.button:focus-visible{
+  color:#fff;text-decoration:none
+}
+.resume-top a.button:hover{background:#8f1e30}
+
+@media(max-width:600px){
+  .continuous-page .header nav a[href="#research"]{white-space:normal;text-align:left}
+  .continuous-page .header nav a[href="#research"] .nav-label{max-width:16ch}
+}
