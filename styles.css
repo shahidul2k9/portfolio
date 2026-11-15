@@ -80,3 +80,4 @@ h1,h2,h3{font-weight:650;letter-spacing:-.035em}
 .publication-list article h3{font-size:clamp(18px,1.8vw,23px);line-height:1.35}
 .publication-list h3 a{color:var(--ink);text-decoration-color:#d8d4d7}
 .publication-list h3 a:hover{text-decoration-color:var(--teal)}
+@media(max-width:360px){.continuous-page .header nav a{padding-inline:6px}}
