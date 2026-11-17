@@ -132,3 +132,46 @@ h1,h2,h3{font-weight:650;letter-spacing:-.035em}
   color:#fff;text-decoration:none
 }
 .resume-top a.button:hover{background:#8f1e30}
+
+/* Project reading order: name and dates, description, contributions, technologies. */
+.section-layout .project-row{display:flex;flex-direction:column;gap:16px}
+.project-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+.project-heading .project-name{margin:0}
+.project-heading .meta{margin:0;text-align:right;font-size:12px;max-width:46%}
+.project-row .project-description{margin:0;max-width:76ch}
+.project-row .project-contributions{padding-top:0}
+.project-row .tags{margin:0;font-size:12px;line-height:1.8}
+@media(max-width:600px){.project-heading{flex-direction:column;gap:8px}.project-heading .meta{max-width:100%;text-align:left}}
+
+@media(max-width:600px){
+  .continuous-page .resume-layout aside{
+    position:sticky;top:76px;z-index:9;background:var(--bg);
+    margin:0 -4px 23px;padding:6px 4px 0;
+  }
+  .continuous-page .resume-layout aside nav{
+    flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
+    gap:4px 16px;white-space:nowrap;scrollbar-width:thin;
+  }
+  .resume-layout aside nav a{flex:none}
+  .resume-content section[id],.project-row[id],.research-topic,.section-body #publications{
+    scroll-margin-top:138px;
+  }
+}
+
+/* Mobile submenu starts directly beneath the main navigation. */
+@media(max-width:600px){
+  .continuous-page .page-section .resume-layout{padding-top:0}
+  .continuous-page .resume-layout aside{padding-top:0}
+}
+
+.section-layout .project-row{padding-inline:24px}
+@media(max-width:600px){.section-layout .project-row{padding-inline:16px}}
+
+.research-topic a{color:var(--teal);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.18em}
+.research-topic a:hover{text-decoration-color:currentColor}
+
+.publication-list article{padding-inline:24px}
+@media(max-width:600px){.publication-list article{padding-inline:16px}}
+
+.publication-venue-link{color:var(--teal);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.18em}
+.publication-venue-link:hover{text-decoration-color:currentColor}

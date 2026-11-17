@@ -29,7 +29,7 @@ const sectionMenus = new Map(pageSections.map(section => [
 ]));
 let scheduled = false;
 function updateSections() {
-  const marker = (document.querySelector('.header')?.getBoundingClientRect().height || 88) + 24;
+  let marker = (document.querySelector('.header')?.getBoundingClientRect().height || 88) + 24;
   let current = pageSections[0];
   for (const section of pageSections) {
     if (section.getBoundingClientRect().top <= marker) current = section;
@@ -39,6 +39,10 @@ function updateSections() {
       if (link.hash === '#' + current.id) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
+  }
+  if (matchMedia('(max-width:600px)').matches) {
+    const submenu = current?.querySelector('.resume-layout aside');
+    if (submenu) marker += submenu.getBoundingClientRect().height;
   }
   for (const [sectionId, items] of sectionMenus) {
     let selected;
