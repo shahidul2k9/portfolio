@@ -183,3 +183,10 @@ h1,h2,h3{font-weight:650;letter-spacing:-.035em}
 
 @media(max-width:600px){.social-links{gap:8px}.social-links a{width:36px;height:36px}}
 @media(max-width:360px){.social-links{gap:6px}.social-links a{width:34px;height:34px}}
+
+/* Text landmarks distinguish the major sections during continuous scrolling. */
+.page-section-title{text-align:center;font-size:clamp(30px,4vw,48px);line-height:1.16;letter-spacing:-.035em;margin:0;padding:48px 0 32px;text-wrap:balance}
+.continuous-page .page-section-title + .resume-layout{padding-top:0}
+@media(max-width:600px){.page-section-title{font-size:32px;padding:40px 8px 28px}}
+
+.home-career .home-availability{justify-content:center;width:100%;text-align:center}
