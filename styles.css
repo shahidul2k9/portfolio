@@ -141,7 +141,7 @@ h1,h2,h3{font-weight:650;letter-spacing:-.035em}
 .project-row .project-description{margin:0;max-width:76ch}
 .project-row .project-contributions{padding-top:0}
 .project-row .tags{margin:0;font-size:12px;line-height:1.8}
-@media(max-width:600px){.project-heading{flex-direction:column;gap:8px}.project-heading .meta{max-width:100%;text-align:left}}
+@media(max-width:600px){.project-heading{flex-direction:row;align-items:baseline;gap:12px}.project-heading .project-name{min-width:0;font-size:22px}.project-heading .meta{flex:0 0 auto;max-width:52%;text-align:right;font-size:11px}}
 
 @media(max-width:600px){
   .continuous-page .resume-layout aside{
@@ -190,3 +190,54 @@ h1,h2,h3{font-weight:650;letter-spacing:-.035em}
 @media(max-width:600px){.page-section-title{font-size:32px;padding:40px 8px 28px}}
 
 .home-career .home-availability{justify-content:center;width:100%;text-align:center}
+
+@media(max-width:600px){.section-layout .project-heading{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:baseline;width:100%}.project-heading .project-name{flex:1 1 auto}.project-heading .meta{white-space:nowrap;margin-left:auto}}
+
+/* Keep employment dates and locations in a right-aligned column on phones. */
+#experience .job-heading,#experience .job-company{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:12px}
+#experience .job-heading>span,#experience .job-company>span:last-child{text-align:right;white-space:nowrap;margin-top:0}
+@media(max-width:600px){#experience .job-heading h3{font-size:17px}#experience .job-heading>span,#experience .job-company{font-size:11px}#experience .job-heading,#experience .job-company{gap:8px}}
+
+/* Center mobile submenus and wrap long project lists into balanced rows. */
+@media(max-width:600px){
+ .continuous-page .resume-layout aside nav{flex-wrap:wrap;justify-content:center;overflow-x:visible;white-space:normal;gap:4px 16px}
+ .continuous-page .resume-layout aside nav a{white-space:nowrap}
+ .resume-content section[id],.project-row[id],.research-topic,.section-body #publications{scroll-margin-top:var(--mobile-anchor-offset,160px)}
+}
+
+@media(max-width:600px){.continuous-page .resume-layout aside nav a{padding:5px 9px;border-radius:7px;margin:0}.continuous-page .resume-layout aside nav{gap:4px 6px}}
+
+/* Menu navigation should not sweep past intervening sections. */
+html{scroll-behavior:auto}
+
+/* Bring the introduction closer to the menu instead of vertically centering it. */
+#home{justify-content:flex-start}
+.home-intro{padding-block:clamp(28px,5vw,56px)}
+.home-intro .home-greeting{display:block;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.02em;line-height:1.4;margin-bottom:8px;color:var(--muted)}
+@media(max-width:600px){.home-intro{padding-top:24px;padding-bottom:32px}}
+
+.home-intro h1{font-size:clamp(34px,4.4vw,60px);line-height:1.15}
+.home-intro .home-greeting{display:inline;font-size:inherit;font-weight:500;letter-spacing:inherit;line-height:inherit;margin:0}
+
+.home-intro h1{text-align:center;font-size:clamp(42px,5.3vw,72px);line-height:1.12}
+.home-intro .home-greeting{display:block;font-size:clamp(20px,2vw,26px);font-weight:500;line-height:1.3;letter-spacing:-.02em;margin:0 0 4px}
+
+.home-bio .home-headline{text-align:center}
+
+.home-location,.footer-location{text-align:center;color:var(--muted);font-size:13px;line-height:1.5;margin:0}
+.home-location{position:absolute;inset-inline:0;bottom:86px}
+#home{padding-bottom:122px}
+.footer-location{width:100%}
+@media(max-width:600px){.home-location{bottom:74px}#home{padding-bottom:110px}}
+
+#experience .job-company>span:first-child{font-size:15px;font-weight:600}
+@media(max-width:600px){#experience .job-company>span:first-child{font-size:14px}}
+
+#projects .page-intro a{color:var(--teal);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.17em}
+#projects .page-intro a:hover{text-decoration-color:currentColor}
+
+#projects .project-row .tags{font-size:14px;line-height:1.85;font-weight:500;color:var(--ink)}
+
+.project-row .project-detail-label{margin:8px 0 -8px;font-size:13px;font-weight:650;line-height:1.5;color:var(--muted);letter-spacing:.02em}
+
+#projects .project-heading .meta,#resume .job-heading>span{font-size:13px;line-height:1.5;font-weight:500}

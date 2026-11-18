@@ -27,6 +27,20 @@ const sectionMenus = new Map(pageSections.map(section => [
     target: document.getElementById(link.hash.slice(1))
   })).filter(item => item.target)
 ]));
+// Wrapped submenus have different heights; keep anchor targets below both menus.
+function updateMenuOffsets() {
+  const headerHeight = document.querySelector('.header')?.getBoundingClientRect().height || 76;
+  for (const section of pageSections) {
+    const submenu = section.querySelector('.resume-layout aside');
+    if (submenu) section.style.setProperty('--mobile-anchor-offset', `${headerHeight + submenu.getBoundingClientRect().height + 20}px`);
+  }
+}
+updateMenuOffsets();
+addEventListener('resize', updateMenuOffsets);
+if ('ResizeObserver' in window) {
+  const menuObserver = new ResizeObserver(updateMenuOffsets);
+  document.querySelectorAll('.resume-layout aside').forEach(menu => menuObserver.observe(menu));
+}
 let scheduled = false;
 function updateSections() {
   let marker = (document.querySelector('.header')?.getBoundingClientRect().height || 88) + 24;
@@ -75,6 +89,20 @@ function scheduleUpdate() {
 addEventListener('scroll', scheduleUpdate, { passive: true });
 addEventListener('resize', scheduleUpdate);
 addEventListener('hashchange', scheduleUpdate);
+// Main tabs open their destination directly instead of scrolling past other pages.
+navLinks.forEach(link => link.addEventListener('click', event => {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const target = document.getElementById(link.hash.slice(1));
+  if (!target) return;
+  event.preventDefault();
+  if (location.hash !== link.hash) history.pushState(null, '', link.hash);
+  target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  updateSections();
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && target.animate) {
+    target.animate([{ opacity: 0.65 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+  }
+}));
+
 updateSections();
 
 // Animate once on entry without hiding content or affecting anchor navigation.
